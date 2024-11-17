@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .wishlist-container {
+      max-width: 500px;
+      margin: auto;
+    }
+    .wishlist-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    .wishlist-item span {
+      font-size: 16px;
+    }
+    button {
+      padding: 5px 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="wishlist-container">
+    <h1>Your Wishlist</h1>
+    <ul id="wishlist">
+      <!-- Wishlist items will appear here -->
+    </ul>
+    <div>
+      <input type="text" id="itemInput" placeholder="Add a new item" />
+      <button onclick="addItem()">Add</button>
+    </div>
+  </div>
+
+  <script>
+    const wishlist = document.getElementById('wishlist');
+    const input = document.getElementById('itemInput');
+
+    function addItem() {
+      const itemName = input.value.trim();
+      if (itemName) {
+        const listItem = document.createElement('li');
+        listItem.className = 'wishlist-item';
+
+        const itemText = document.createElement('span');
+        itemText.textContent = itemName;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Remove';
+        deleteButton.onclick = () => wishlist.removeChild(listItem);
+
+        listItem.appendChild(itemText);
+        listItem.appendChild(deleteButton);
+
+        wishlist.appendChild(listItem);
+
+        input.value = '';
+      } else {
+        alert('Please enter an item!');
+      }
+    }
+  </script>
+</body>
+</html>
